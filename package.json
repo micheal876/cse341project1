@@ -1,0 +1,22 @@
+{
+  "name": "cse341-project-1",
+  "version": "1.0.0",
+  "description": "my First Project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/micheal876/CSE341-project-1.git"
+  },
+  "author": "Micheal Edwards",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/micheal876/CSE341-project-1/issues"
+  },
+  "homepage": "https://github.com/micheal876/CSE341-project-1#readme",
+  "dependencies": {
+    "express": "^4.21.0"
+  }
+}
