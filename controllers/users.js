@@ -5,6 +5,7 @@ const ObjectId = require('mongodb').ObjectId;
 
 // Controller function to get all users from the 'users' collection
 const getAll = async (req, res) =>{
+  //#swagger.tags=['Users']
     const result = await mongodb.getDatabase().db().collection('users').find();
     result.toArray().then((users) => {
         res.setHeader('Content-Type', 'application/json');
@@ -16,6 +17,7 @@ const getAll = async (req, res) =>{
 
 // Controller function to get a single user by their ID
 const getSingle = async (req, res) => {
+   //#swagger.tags=['Users']
     const userId = new ObjectId(req.params.id);  // Convert the request parameter `id` into a MongoDB ObjectId
     const result = await mongodb.getDatabase().db().collection('users').find({_id: userId});
     result.toArray().then((users) => {
@@ -27,12 +29,12 @@ const getSingle = async (req, res) => {
 };
 
 const createUser = async (req, res) => {
+   //#swagger.tags=['Users']
     const user = {
-      firstName: req.body.firstName,
+      username: req.body.username,
       lastName: req.body.lastName,
       email: req.body.email,
-      favoriteColor: req.body.favoriteColor,
-      birthday: req.body.birthday
+      ipaddress: req.body.ipaddress
     };
 
     const response = await mongodb.getDatabase().db().collection('users').insertOne(user);
@@ -45,6 +47,7 @@ const createUser = async (req, res) => {
 
 
 const updateUser = async (req, res) => {
+   //#swagger.tags=['Users']
     const userId = new ObjectId(req.params.id);
     // be aware of updateOne if you only want to update specific fields
     const user = {
@@ -63,8 +66,9 @@ const updateUser = async (req, res) => {
 
 
   const deleteUser = async (req, res) => {
+     //#swagger.tags=['Users']
     const userId = new ObjectId(req.params.id);
-    const response = await mongodb.getDatabase().db().collection('users').deletOne({ _id: userId }, true);
+    const response = await mongodb.getDatabase().db().collection('users').deleteOne({ _id: userId });
     console.lo
     if (response.deletedCount > 0) {
       res.status(204).send();

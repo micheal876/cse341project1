@@ -1,12 +1,21 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongodb = require('./data/database'); // MongoDB module
-
-
-const port = process.env.PORT || 3000;
 const app = express();
 
+const port = process.env.PORT || 3000;
+
+
 app.use(bodyParser.json())
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader(
+    'Access-control-Allow-Headers', 
+    'Origin, X-Requested-with, Content-type, Accept, Z-key'
+  );
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  next();
+});
 // Middleware or route handling
 app.use('/', require('./routes'));
 
